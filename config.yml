@@ -1,12 +1,11 @@
 default:
   site:
-    branch: master
     review_period: "13 months"
-    default_space: "rest-api"
     spaces:
       - space_path: rest-api
         space_name: REST API
-    dev_browser_path: /rest-api/
+    branch: master
+    dev_browser_path: rest-api
     versions:
       - label: FT
         is_current_version: true
