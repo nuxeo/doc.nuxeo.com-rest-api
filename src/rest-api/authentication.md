@@ -1,95 +1,75 @@
 ---
 title: Authentication
-description: Handle authentication with Nuxeo REST API
 review:
-  comment: ""
-  date: "2018-01-02"
-  status: ok
+    comment: ''
+    date: '2019-03-06'
+    status: ok
 labels:
-  - rest-api
-tree_item_index: 100
-section_parent: rest-api
+    - authentication
 toc: true
+tree_item_index: 100
 ---
 
-Nuxeo REST API handles these authentication method:
+The request authentication depends on the configured authentication chain. The [default authentication chain](http://explorer.nuxeo.com/nuxeo/site/distribution/latest/viewContribution/org.nuxeo.ecm.restapi.server.auth.config--specificChains) for the REST API includes:
+- Basic
+- Token
+- JWT
+- Bearer Token
 
-- basic authentication via `BasicAuthInterceptor`
-- portal SSO authentication via `PortalSSOAuthInterceptor`
-- token authentication via `TokenAuthInterceptor`
+## Basic Authentication
 
-### Basic authentication
+Authenticate with a `username` and `password`:
 
-The default authentication method is the basic authentication. Client builder has a convenient method to configure Nuxeo Java Client with a basic authentication:
-
-```java
-new NuxeoClient.Builder().authentication("Administrator", "Administrator");
+```bash
+curl -u USERNAME:PASSWORD  https://nightly.nuxeo.com/nuxeo/api/v1/path/default-domain
 ```
 
-Whose equivalent is:
+Authenticate with the `Authorization` header:
 
-```java
-new NuxeoClient.Builder().authentication(new BasicAuthInterceptor("Administrator", "Administrator"));
+```bash
+curl -H "Authorization: Basic QWRtaW5pc3RyYXRvcjpBZG1pbmlzdHJhdG9y" https://nightly.nuxeo.com/nuxeo/api/v1/path/default-domain
 ```
 
-### Portal SSO authentication
+## Token Authentication
 
-Once Portal SSO authentication has been activated on your Nuxeo server you can use this method to connect the java client with:
+Authenticate with a Nuxeo login token:
 
-```java
-new NuxeoClient.Builder().authentication(new PortalSSOAuthInterceptor("Administrator", "nuxeo5secretkey"));
+```bash
+curl -H "X-Authentication-Token: NUXEO_TOKEN" https://nightly.nuxeo.com/nuxeo/api/v1/path/default-domain
 ```
 
-### Token authentication
+## JWT Authentication
 
-Token authentication is enabled by default on Nuxeo server, to use it in java client
+Authenticate with a JWT token:
 
-```java
-new NuxeoClient.Builder().authentication(new TokenAuthInterceptor("nuxeoToken"));
+```bash
+curl -H "Authorization: Bearer JWT_TOKEN" https://nightly.nuxeo.com/nuxeo/api/v1/path/default-domain
 ```
 
-### Implement your own
+## OAuth 2.0 Access Token Authentication
 
-By design, Nuxeo Java Client leverage `OkHttp` `Interceptor` interface to handle authentication between client and server.
+Authenticate with an OAuth 2.0 access token:
 
-This is what expect the method: `NuxeoClient.Builder#authentication(Interceptor)`.
-
-You just need to implement one method which will be responsible to inject the appropriate header:
-
-```java
-public class MyAuthInterceptor implements Interceptor {
-
-    protected String token;
-
-    public MyAuthInterceptor(String token) {
-        this.token = token;
-    }
-
-    @Override
-    public Response intercept(Chain chain) throws IOException {
-        Request request = chain.request() // get the request
-                               .newBuilder() // create a new builder from it
-                               .addHeader("MY-HEADER", token) // add header
-                               .build(); // finally build request
-        return chain.proceed(request);
-    }
-
-}
+```bash
+curl -H "Authorization: Bearer OAUTH2_TOKEN" https://nightly.nuxeo.com/nuxeo/api/v1/path/default-domain
 ```
 
-Then you can use it:
+* * *
 
-```java
-new NuxeoClient.Builder().authentication(new MyAuthInterceptor("mySuperToken"));
-```
+<div class="row" data-equalizer data-equalize-on="medium">
+<div class="column medium-6">
+
+{{#> panel heading='Related Documentation'}}
+
+- [Authentication and User Management]({{page page='authentication-and-user-management'}})
+- [OAuth 2.0]({{page page='using-oauth2'}})
+
+{{/panel}}
+
+</div>
+<div class="column medium-6">
 
 &nbsp;
 
-<div class="row" data-equalizer data-equalize-on="medium"><div class="column medium-6">{{#> panel heading='Related sections in this documentation'}}
-
-- [Nuxeo - REST Authentication]({{page space='nxdoc' page='request-authentication'}})
-- [Nuxeo - Portal SSO Authentication]({{page space='nxdoc' page='using-sso-portals'}})
-
-{{/panel}}</div></div>
-
-&nbsp;
+</div>
+</div>

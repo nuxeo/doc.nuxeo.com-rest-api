@@ -1,80 +1,76 @@
 ---
 title: REST API
-description: Nuxeo REST API
-excerpt: "Inheritance test"
 review:
-  comment: ""
-  date: "2018-01-02"
-  status: ok
+    comment: ''
+    date: '2019-03-06'
+    status: ok
 labels:
-  - rest-api
+    - url
+    - rest-api
+    - university
+    - excerpt
+    - multi-excerpt
 toc: true
-is_overview: true
+notes: Documentation page used by the Marketing team. Check with Marketing before deleting or moving.
 ---
 
-The Nuxeo REST API.
+{{! excerpt}}
 
-It is compatible with all Nuxeo versions as of LTS 2015.
+The Nuxeo REST API is available on a Nuxeo Server. All endpoints follow the URL:
 
-## Getting started
-
-Follow this [tutorial]({{page space='nxdoc' page='setting-up-your-nuxeo-environment'}}) to have a running Nuxeo instance on your local machine.
-
-### Installation
-
-To use nuxeo-java-client, you can download it from our Nexus: [Nuxeo Client Library 3.1.1-SNAPSHOT](https://maven.nuxeo.org/nexus/#nexus-search;gav%7Eorg.nuxeo.client%7Enuxeo-java-client%7E3.1.1-SNAPSHOT%7Ejar%7E).
-
-If you use Maven, you need to have nuxeo-java-client as dependency:
-
-```xml
-<dependency>
-  <groupId>org.nuxeo.client</groupId>
-  <artifactId>nuxeo-java-client</artifactId>
-  <version>3.1.1-SNAPSHOT</version>
-</dependency>
-
-<repository>
-  <id>public-releases</id>
-  <url>http://maven.nuxeo.com/nexus/content/repositories/public-releases/</url>
-</repository>
-<repository>
-  <id>public-snapshots</id>
-  <url>http://maven.nuxeo.com/nexus/content/repositories/public-snapshots/</url>
-</repository>
+```
+https://NUXEO_SERVER/nuxeo/api/REST_API_VERSION/*
 ```
 
-### Client creation
+This page explains the organization and scope of the existing endpoints and other additional mechanisms which extend the behavior of the API.
 
-Nuxeo Java Client is created with help of its `Builder`. Once every options are submitted, last step is to build the client and test the connection to Nuxeo Server:
+{{! /excerpt}}
 
-```java
-NuxeoClient client = new NuxeoClient.Builder()
-                                    .url("http://localhost:8080/nuxeo")
-                                    .authentication("Administrator", "Administrator")
-                                    .schemas("*") // fetch all document schemas
-                                    .connect();
+{{! multiexcerpt name='RestAPIIntroduction'}}
+
+{{#> callout type='info' heading='Nuxeo University'}}
+
+Watch the related [course on Nuxeo University](https://university.nuxeo.com/learn/public/course/view/elearning/66/rest-api).
+![]({{file name='university-restapi.png' page='nxdoc/university'}} ?w=450,border=true)
+
+{{/callout}}
+
+## Example
+
+Get the `default-domain` document by its path:
+
+```bash
+curl -u Administrator:Administrator  https://nightly.nuxeo.com/nuxeo/api/v1/path/default-domain
 ```
 
-Client is now ready to execute requests to Nuxeo Server. After its creation, it will contain the current Nuxeo user and the Nuxeo Server version.
+## Scope and Concepts
 
-More documentation about client [options]({{page page=''}}).
+The Nuxeo REST API is the best way to remotely integrate portals, workflow engines, ESBs and custom applications written in JavaScript, Ruby, etc, with a Nuxeo Server. See [REST API Endpoints]({{page page='rest-api-endpoints'}}) for more detailed information on the provided endpoints and how to contribute your own.
 
-### Fetch your first document
+## Additional Features
 
-Below is how we can retrieve default domain from a stock Nuxeo Server:
+The Nuxeo REST API offers several additional features compared to a standard REST API:
 
-```java
-Document domain = client.repository().fetchDocumentByPath("/default-domain");
-String title = domain.getPropertyValue("dc:title"); // should be equal to "Domain"
-```
+- The use of [Content enrichers]({{page page='content-enrichers'}}) in request headers which allow you to request more information with the returned resources (for example, receiving all of a document's children in addition to the document itself).
+- The use of [Web Adapters]({{page page='rest-api-web-adapters'}}) which transform the resources returned (for example, getting all the tasks of a document, or its related documents).
+- The ability to pipe command calls on a resource.
 
-&nbsp;
+## Learn more
 
-<div class="row" data-equalizer data-equalize-on="medium"><div class="column medium-6">{{#> panel heading='Related sections in this documentation'}}
+- Visit the [Nuxeo API playground](http://nuxeo.github.io/api-playground/) to experiment with different endpoints on your Nuxeo instance. You can read the [Nuxeo Platform API Playground documentation page ]({{page page='howto-nuxeo-api-playground'}}) for more information on how to use it.
+- Discover the Nuxeo Platform and its features through its [REST API]({{page page='discover-nuxeo-platform-apis'}}).
+- Check out some [consecutive cURL calls to get familiar with the resources/command variations of the API]({{page page='using-curl'}})
 
-- [Nuxeo - Getting Started]({{page space='nxdoc' page='getting-started'}})
-- [Nuxeo - Setting up your environment]({{page space='nxdoc' page='setting-up-your-nuxeo-environment'}})
+## Available Client SDKs
+// TODO
+We provide several client SDKs to make it even easier to use the API integrated with the Nuxeo Platform.
 
-{{/panel}}</div></div>
+- [Java client]({{page page='java-automation-client'}})
+- [JavaScript client]({{page page='javascript-client'}})
+- [iOS client]({{page page='ios-client'}})
+- [Android client]({{page page='android-client'}})
+- [PHP client]({{page page='php-automation-client'}}) (partial implementation)
+- [DART client](https://github.com/nelsonsilva/nuxeo-dart-client)
+- [.NET Client]({{page page='net-client'}})
 
-&nbsp;
+{{! /multiexcerpt}}
