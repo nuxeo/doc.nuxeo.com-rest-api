@@ -19,7 +19,7 @@ notes: Documentation page used by the Marketing team. Check with Marketing befor
 The Nuxeo REST API is available on a Nuxeo Server. All endpoints follow the URL:
 
 ```
-https://NUXEO_SERVER/nuxeo/api/REST_API_VERSION/*
+https://NUXEO_SERVER/nuxeo/api/v1/ENDPOINT
 ```
 
 This page explains the organization and scope of the existing endpoints and other additional mechanisms which extend the behavior of the API.

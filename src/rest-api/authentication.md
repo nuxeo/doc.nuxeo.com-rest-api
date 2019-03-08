@@ -18,40 +18,38 @@ The request authentication depends on the configured authentication chain. The [
 
 ## Basic Authentication
 
-Authenticate with a `username` and `password`:
+Authenticate with Base64-encoded credentials:
 
-```bash
-curl -u USERNAME:PASSWORD  https://nightly.nuxeo.com/nuxeo/api/v1/path/default-domain
 ```
-
-Authenticate with the `Authorization` header:
-
-```bash
-curl -H "Authorization: Basic QWRtaW5pc3RyYXRvcjpBZG1pbmlzdHJhdG9y" https://nightly.nuxeo.com/nuxeo/api/v1/path/default-domain
+GET https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+Authorization: Basic BASE_64_CREDENTIALS
 ```
 
 ## Token Authentication
 
 Authenticate with a Nuxeo login token:
 
-```bash
-curl -H "X-Authentication-Token: NUXEO_TOKEN" https://nightly.nuxeo.com/nuxeo/api/v1/path/default-domain
+```
+GET https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+X-Authentication-Token: NUXEO_TOKEN
 ```
 
 ## JWT Authentication
 
 Authenticate with a JWT token:
 
-```bash
-curl -H "Authorization: Bearer JWT_TOKEN" https://nightly.nuxeo.com/nuxeo/api/v1/path/default-domain
+```
+GET https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+Authorization: Bearer JWT_TOKEN
 ```
 
 ## OAuth 2.0 Access Token Authentication
 
 Authenticate with an OAuth 2.0 access token:
 
-```bash
-curl -H "Authorization: Bearer OAUTH2_TOKEN" https://nightly.nuxeo.com/nuxeo/api/v1/path/default-domain
+```
+GET https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+Authorization: Bearer OAUTH2_TOKEN
 ```
 
 * * *

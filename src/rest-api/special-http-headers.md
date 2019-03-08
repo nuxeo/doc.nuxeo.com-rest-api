@@ -29,8 +29,9 @@ See [Aggregating Marshallers and Avoiding Infinite Loops]({{page page='parameter
 
 **Example**
 
-```bash
-curl -u USERNAME:PASSWORD -H "depth: max" https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+```
+GET https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+depth: max
 ```
 
 ---
@@ -53,8 +54,9 @@ None.
 
 **Example**
 
-```bash
-curl -u USERNAME:PASSWORD -H "enrichers.document: breadcrumb,thumbnail,children" https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+```
+GET https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+enrichers.document: breadcrumb,thumbnail,children
 ```
 
 ---
@@ -77,8 +79,9 @@ None.
 
 **Example**
 
-```bash
-curl -u USERNAME:PASSWORD -H "fetch.document: dc:creator,dc:subjects,dc:nature" https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+```
+GET https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+fetch.document: dc:creator,dc:subjects,dc:nature
 ```
 
 ---
@@ -101,7 +104,8 @@ None.
 **Example**
 
 ```bash
-curl -u USERNAME:PASSWORD -H "Nuxeo-Transaction-Timeout: 300" https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+GET https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+Nuxeo-Transaction-Timeout: 300
 ```
 
 ---
@@ -120,8 +124,10 @@ Force ElasticSearch synchronous indexing during a REST call.
 
 **Example**
 
-```bash
-curl -X POST -u USERNAME:PASSWORD -H "nx_es_sync: true" -H "Content-Type: application/json" -d 'JSON_DOCUMENT' https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+```
+POST https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+Content-Type: application/json
+nx_es_sync: true
 ```
 
 ---
@@ -142,8 +148,9 @@ None.
 
 **Example**
 
-```bash
-curl -u USERNAME:PASSWORD -H "properties: dublincore,file,common" https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+```
+GET https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+properties: dublincore,file,common
 ```
 
 ---
@@ -162,8 +169,9 @@ Any contributed repository name.
 
 **Example**
 
-```bash
-curl -u USERNAME:PASSWORD -H "Repository: other" https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+```
+GET https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+Repository: other
 ```
 
 ---
@@ -182,8 +190,9 @@ Tell the [search endpoint]({{page version='' space='nxdoc' page='search-endpoint
 
 **Example**
 
-```bash
-curl -u USERNAME:PASSWORD -H "skipAggregates: true" https://NUXEO_SERVER/nuxeo/api/v1/search/lang/pp/PAGE_PROVIDER_NAME
+```
+GET https://NUXEO_SERVER/nuxeo/api/v1/search/lang/pp/PAGE_PROVIDER_NAME
+skipAggregates: true
 ```
 
 ---
@@ -204,8 +213,10 @@ None.
 
 **Example**
 
-```bash
-curl -X POST -u USERNAME:PASSWORD -H "source: REST" -H "Content-Type: application/json" -d 'JSON_DOCUMENT' https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+```
+POST https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+Content-Type: application/json
+source: REST
 ```
 
 ---
@@ -227,7 +238,9 @@ Can be useful when dealing with blobs to avoid having the blob output sent back 
 **Example**
 
 ```bash
-curl -X POST -u USERNAME:PASSWORD -H "Content-Type: application/json" -H "X-NXVoidOperation: true" -d '{ "params": { "value": "DOC_ID" },"context": {}}' https://NUXEO_SERVER/nuxeo/api/v1/automation/Document.GetBlob
+POST https://NUXEO_SERVER/nuxeo/api/v1/automation/Document.GetBlob
+Content-Type: application/json
+X-NXVoidOperation: true
 ```
 
 ---
@@ -246,8 +259,10 @@ Increment minor or major version and returns versioned document.
 
 **Example**
 
-```bash
-curl -X PUT -u USERNAME:PASSWORD -H "Content-Type: application/json" -H "X-Versioning-Option: MAJOR" -d 'JSON_DOCUMENT' https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+```
+PUT https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
+Content-Type: application/json
+X-Versioning-Option: MAJOR
 ```
 
 ---
