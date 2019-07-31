@@ -11,7 +11,5 @@ default:
         is_current_version: true
       - label: "2.8"
         url_path: "2.8"
-  verify_paths:
-    - index.html
 development:
   isDev: true

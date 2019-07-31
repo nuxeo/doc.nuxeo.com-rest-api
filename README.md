@@ -10,13 +10,13 @@ See [the main project requirements](https://github.com/nuxeo/doc.nuxeo.com/blob/
 
 Clone the repository to your local machine (and remember where it's saved :)), using your favorite git client or the command line:
 ```bash
-$ git clone https://github.com/nuxeo/doc.nuxeo.com-rest-api.git
-$ cd doc.nuxeo.com-rest-api
+git clone https://github.com/nuxeo/doc.nuxeo.com-rest-api.git
+cd doc.nuxeo.com-rest-api
 ```
 
 ## Run Locally
 ```bash
-$ npm run dev
+npm run dev
 ```
 
 Refer to [the authoring instrutions](https://github.com/nuxeo/doc.nuxeo.com/blob/master/docs/writing-documentation.md#installation) for further details. Hint: append `/nxdoc` or `/userdoc` to the URL.
@@ -47,10 +47,6 @@ Generated output of the site. This is what will be served in production.
 
 Source Markdown and HTML files for content.
 [Read the page about writing documentation, markdown and handlebars](https://github.com/nuxeo/doc.nuxeo.com/blob/master/docs/writing-documentation.md)
-
-### `./verify/...`
-
-Verification tests specific to this repository post build.
 
 # Trouble shooting
 
