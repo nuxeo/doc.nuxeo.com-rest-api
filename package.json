@@ -11,19 +11,15 @@
   },
   "dependencies": {
     "co": "^4.6.0",
-    "lodash.defaultsdeep": "^4.6.0",
-    "node-yaml-config": "0.0.4",
-    "nuxeo-docs-builder": "nuxeo/doc.nuxeo.com#reworked-version-paths",
-    "thenify": "^3.3.0"
+    "lodash.defaultsdeep": "^4.6.1",
+    "node-yaml-config": "0.0.5",
+    "nuxeo-docs-builder": "nuxeo/doc.nuxeo.com#v12.0.3",
+    "thenify": "^3.2.1"
   },
   "devDependencies": {
-    "browser-sync": "^2.26.3",
+    "browser-sync": "^2.26.7",
     "bs-fullscreen-message": "^1.1.0",
-    "eslint": "^5.14.1",
-    "eslint-config-prettier": "^4.1.0",
-    "eslint-plugin-prettier": "^3.0.1",
-    "prettier": "^1.16.4",
-    "tap": "^12.5.3"
+    "tap": "^14.5.0"
   },
   "main": "build.js",
   "config": {
@@ -34,7 +30,7 @@
     "verify": "tap verify",
     "start": "npm run metalsmith",
     "poststart": "npm run copy_assets && npm run verify",
-    "predev": "npm install",
+    "predev": "npm ci || npm install",
     "dev": "node dev-server",
     "dev:no-clean": "node dev-server --no-clean",
     "copy_assets": "npm run copy_assets:default && npm run copy_assets:module",
