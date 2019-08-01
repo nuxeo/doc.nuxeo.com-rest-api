@@ -1,5 +1,5 @@
 ---
-title: Workflow Endpoint
+title: Workflow
 review:
     comment: ''
     date: '2019-03-07'

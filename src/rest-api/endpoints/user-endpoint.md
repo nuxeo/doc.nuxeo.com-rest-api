@@ -1,5 +1,5 @@
 ---
-title: User Endpoint
+title: User
 review:
     comment: ''
     date: '2019-07-25'

@@ -1,5 +1,5 @@
 ---
-title: User Entity Type
+title: User
 review:
     comment: ''
     date: '2019-07-25'
@@ -9,7 +9,7 @@ labels:
 toc: false
 ---
 
-Representation of a User.
+Representation of a [User]({{page version='' space='userdoc' page='administration'}}#users-and-groups).
 
 ## Resource Representation
 

@@ -1,5 +1,5 @@
 ---
-title: ACLs Entity Type
+title: ACLs
 review:
     comment: ''
     date: '2019-07-25'
@@ -9,7 +9,7 @@ labels:
 toc: false
 ---
 
-Representation of a list of ACLs (Access Control List).
+Representation of a list of [ACLs]({{page version='' space='nxdoc' page='acls'}}) (Access Control List).
 
 ## Resource Representation
 

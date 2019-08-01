@@ -1,5 +1,5 @@
 ---
-title: Log Entry Entity Type
+title: Log Entry
 review:
     comment: ''
     date: '2019-07-25'

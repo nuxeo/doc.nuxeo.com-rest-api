@@ -1,5 +1,5 @@
 ---
-title: Directory Entity Type
+title: Directory
 review:
     comment: ''
     date: '2019-07-25'
@@ -9,7 +9,7 @@ labels:
 toc: false
 ---
 
-Representation of a Directory.
+Representation of a [Directory]({{page version='' space='nxdoc' page='data-lists-and-directories'}}).
 
 ## Resource Representation
 

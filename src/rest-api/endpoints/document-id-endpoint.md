@@ -1,5 +1,5 @@
 ---
-title: Document Id Endpoint
+title: Document Id
 review:
     comment: ''
     date: '2019-07-25'

@@ -1,5 +1,5 @@
 ---
-title: Data Model Endpoint
+title: Data Model
 review:
     comment: ''
     date: '2019-07-25'

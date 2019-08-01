@@ -1,5 +1,5 @@
 ---
-title: Batch Upload Endpoint
+title: Batch Upload
 review:
     comment: ''
     date: '2019-03-07'

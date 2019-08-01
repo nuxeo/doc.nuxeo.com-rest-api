@@ -1,5 +1,5 @@
 ---
-title: Document Path Endpoint
+title: Document Path
 review:
     comment: ''
     date: '2019-07-25'

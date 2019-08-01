@@ -1,5 +1,5 @@
 ---
-title: Task Entity Type
+title: Task
 review:
     comment: ''
     date: '2019-07-25'
@@ -9,7 +9,7 @@ labels:
 toc: false
 ---
 
-Representation of a Task.
+Representation of a [Task]({{page version='' space='nxdoc' page='workflow'}}).
 
 ## Resource Representation
 

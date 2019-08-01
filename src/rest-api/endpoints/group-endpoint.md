@@ -1,5 +1,5 @@
 ---
-title: Group Endpoint
+title: Group
 review:
     comment: ''
     date: '2019-07-25'

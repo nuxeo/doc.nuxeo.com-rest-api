@@ -15,7 +15,7 @@ In order to have more control over REST API calls, you can use the following HTT
 
 ## depth
 
-Control the aggregation depth.
+Control the marshalling aggregation depth.
 
 See [Aggregating Marshallers and Avoiding Infinite Loops]({{page version='' space='nxdoc' page='parameterizing-reusing-marshallers'}}#aggregating-marshallers-and-avoiding-infinite-loops) for more details.
 

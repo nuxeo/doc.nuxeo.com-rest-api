@@ -1,5 +1,5 @@
 ---
-title: Group Entity Type
+title: Group
 review:
     comment: ''
     date: '2019-07-25'
@@ -9,7 +9,7 @@ labels:
 toc: false
 ---
 
-Representation of a Group.
+Representation of a [Group]({{page version='' space='userdoc' page='administration'}}#users-and-groups).
 
 ## Resource Representation
 

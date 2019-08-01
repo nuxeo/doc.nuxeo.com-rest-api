@@ -59,8 +59,8 @@ Authorization: Bearer OAUTH2_TOKEN
 
 {{#> panel heading='Related Documentation'}}
 
-- [Authentication and User Management]({{page page='authentication-and-user-management'}})
-- [OAuth 2.0]({{page page='using-oauth2'}})
+- [Authentication and User Management]({{page space='nxdoc' page='authentication-and-user-management'}})
+- [OAuth 2.0]({{page space='nxdoc' page='using-oauth2'}})
 
 {{/panel}}
 

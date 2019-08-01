@@ -1,5 +1,5 @@
 ---
-title: Workflow Entity Type
+title: Workflow
 review:
     comment: ''
     date: '2019-07-25'
@@ -9,7 +9,7 @@ labels:
 toc: false
 ---
 
-Representation of a Workflow.
+Representation of a [Workflow]({{page version='' space='nxdoc' page='workflow'}}).
 
 ## Resource Representation
 

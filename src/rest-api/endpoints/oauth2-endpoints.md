@@ -1,5 +1,5 @@
 ---
-title: OAuth 2.0 Endpoints
+title: OAuth 2.0
 review:
     comment: ''
     date: '2019-03-07'

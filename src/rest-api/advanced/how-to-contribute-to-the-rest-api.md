@@ -20,13 +20,13 @@ tree_item_index: 200
 <!--
 // TODO
 -->
-The Nuxeo REST API provides many [endpoints]({{page page='rest-api-endpoints'}}). Moreover, it has been designed to be highly pluggable allowing to contribute your own endpoint whenever required.
-Similarly, you can contribute your own [web adapter]({{page page='rest-api-web-adapters'}}).
+The Nuxeo REST API provides many [endpoints]({{page space='rest-api' page='endpoints'}}). Moreover, it has been designed to be highly pluggable allowing to contribute your own endpoint whenever required.
+Similarly, you can contribute your own [web adapter]({{page space='nxdoc' page='rest-api-web-adapters'}}).
 Let's first see how the REST API works, then how it can be extended.
 
 ## How the REST API Works
 
- The REST API is coded in the [nuxeo-rest-api-server](https://github.com/nuxeo/nuxeo/tree/master/nuxeo-features/rest-api/nuxeo-rest-api-server) Maven module. It is a [WebEngine]({{page page='webengine-jax-rs'}}) module that:
+ The REST API is coded in the [nuxeo-rest-api-server](https://github.com/nuxeo/nuxeo/tree/master/nuxeo-features/rest-api/nuxeo-rest-api-server) Maven module. It is a [WebEngine]({{page space='nxdoc' page='webengine-jax-rs'}}) module that:
 
  - Defines the [APIRoot](https://github.com/nuxeo/nuxeo/blob/master/nuxeo-features/rest-api/nuxeo-rest-api-server/src/main/java/org/nuxeo/ecm/restapi/server/jaxrs/APIRoot.java) instance, the resource class serving requests for `/nuxeo/api/v1` through the `javax.ws.rs.Path` annotation:
 
@@ -34,7 +34,7 @@ Let's first see how the REST API works, then how it can be extended.
  @Path("/api/v1{repo : (/repo/[^/]+?)?}")
  ```
 
- - Provides these resources as [Web Objects]({{page page='web-object-model'}}).
+ - Provides these resources as [Web Objects]({{page space='nxdoc' page='web-object-model'}}).
 
  - Allows the [Writers and Readers]({{page page='creating-your-own-marshaller'}}) to marshal and unmarshal these resources.
 

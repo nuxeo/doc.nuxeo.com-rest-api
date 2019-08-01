@@ -1,5 +1,5 @@
 ---
-title: Document Entity Type
+title: Document
 review:
     comment: ''
     date: '2019-07-25'

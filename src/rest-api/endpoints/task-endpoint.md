@@ -1,5 +1,5 @@
 ---
-title: Task Endpoint
+title: Task
 review:
     comment: ''
     date: '2019-03-07'
