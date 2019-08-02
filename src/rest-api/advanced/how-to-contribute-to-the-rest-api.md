@@ -20,7 +20,7 @@ tree_item_index: 200
 <!--
 // TODO
 -->
-The Nuxeo REST API provides many [endpoints]({{page space='rest-api' page='endpoints'}}). Moreover, it has been designed to be highly pluggable allowing to contribute your own endpoint whenever required.
+The Nuxeo REST API provides many [endpoints]({{page page='endpoints'}}). Moreover, it has been designed to be highly pluggable allowing to contribute your own endpoint whenever required.
 Similarly, you can contribute your own [web adapter]({{page space='nxdoc' page='rest-api-web-adapters'}}).
 Let's first see how the REST API works, then how it can be extended.
 
@@ -193,8 +193,8 @@ public class WorkflowAdapter extends DefaultAdapter {
 <div class="row" data-equalizer data-equalize-on="medium">
   <div class="column medium-6">
   {{#> panel heading='Related Documentation'}}
-- [REST API Endpoints]({{page page='rest-api-endpoints'}})
-- [REST API Web Adapters]({{page page='rest-api-web-adapters'}})
+- [REST API Endpoints]({{page page='endpoints'}})
+- [REST API Web Adapters]({{page space='nxdoc' page='rest-api-web-adapters'}})
   {{/panel}}
   </div>
   <div class="column medium-6">

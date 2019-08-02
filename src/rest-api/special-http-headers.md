@@ -200,7 +200,7 @@ skipAggregates: true
 
 Set this property in document context data to be used for automatic source-based versioning.
 
-See [source-based versioning]({{page page='versioning#source-based-versioning'}}) for more details.
+See [source-based versioning]({{page page='versioning'}}#source-based-versioning) for more details.
 
 **Valid Values**
 

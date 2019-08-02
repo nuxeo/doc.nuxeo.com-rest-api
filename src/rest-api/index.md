@@ -30,7 +30,6 @@ This page explains the organization and scope of the existing endpoints and othe
 
 {{#> callout type='info' heading='Nuxeo University'}}
 Watch the related [course on Nuxeo University](https://university.nuxeo.com/learn/public/course/view/elearning/66/rest-api).
-![]({{file name='university-restapi.png' page='nxdoc/university'}} ?w=450,border=true)
 {{/callout}}
 
 ## Example
@@ -52,7 +51,7 @@ See [Endpoints]({{page page='endpoints'}}) for more detailed information on the 
 The Nuxeo REST API offers several additional features compared to a standard REST API:
 
 - The use of [Content enrichers]({{page space='nxdoc' page='content-enrichers'}}) in request headers which allow you to request more information with the returned resources (for example, receiving all of a document's children in addition to the document itself).
-- The use of [Web Adapters]({{page space='nxdoc' page='web-adapters'}}) which transform the resources returned (for example, getting all the tasks of a document, or its related documents).
+- The use of [Web Adapters]({{page space='nxdoc' page='rest-api-web-adapters'}}) which transform the resources returned (for example, getting all the tasks of a document, or its related documents).
 - The ability to pipe command calls on a resource.
 
 ## Learn More
