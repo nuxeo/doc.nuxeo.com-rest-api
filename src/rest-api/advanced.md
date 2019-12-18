@@ -7,7 +7,6 @@ review:
 labels:
     - http
     - rest-api
-toc: true
 tree_item_index: 800
 ---
 
