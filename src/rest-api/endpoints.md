@@ -21,6 +21,7 @@ Here are the endpoints provided by the Nuxeo REST API.
 | [Document Id]({{page page='document-id-endpoint'}})     | **/id**         | CRUD on documents by id.                                         |
 | [Document Path]({{page page='document-path-endpoint'}}) | **/path**       | CRUD on documents by path.                                       |
 | [Group]({{page page='group-endpoint'}})                 | **/group**      | CRUD on groups.                                                  |
+| [Management]({{page page='management-endpoint'}})       | **/management** | Management REST API.                                             |
 | [OAuth 2.0]({{page page='oauth2-endpoints'}})           | **/oauth2**     | CRUD on OAuth 2.0 clients, providers and tokens.                 |
 | [Search]({{page page='search-endpoints'}})              | **/search**     | Perform searches by query or page provider and save searches.    |
 | [Task]({{page page='task-endpoint'}})                   | **/task**       | Handle tasks.                                                    |
