@@ -51,4 +51,4 @@ http://localhost:8080/nuxeo/api/v1/management/work-manager/run-works-in-failure
 
 ## Learn More
 
-- [WorkManager Dead Letter Queue]({{page page='workmanager-dql'}}).
+- [WorkManager Dead Letter Queue]({{page version='' space='nxdoc' page='workmanager-dlq'}}).

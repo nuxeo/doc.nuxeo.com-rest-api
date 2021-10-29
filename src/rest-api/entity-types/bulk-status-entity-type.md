@@ -2,7 +2,7 @@
 title: Bulk Status Entity Type
 review:
     comment: ''
-    date: '2021-10-26'
+    date: '2021-10-29'
     status: ok
 labels:
     - rest-api

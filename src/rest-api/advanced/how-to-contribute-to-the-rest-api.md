@@ -2,7 +2,7 @@
 title: 'HOWTO: Contribute to the REST API'
 review:
     comment: ''
-    date: '2019-07-24'
+    date: '2021-10-29'
     status: ok
 details:
     howto:

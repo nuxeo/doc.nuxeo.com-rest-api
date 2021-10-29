@@ -11,7 +11,7 @@ toc: true
 tree_item_index: 400
 ---
 
-The Elasticsearch endpoint works with the `default` repository if none is specified. The repository can be changed using the [Repository header]({{page page='special-http-headers#repository'}}).
+The Elasticsearch endpoint works with the `default` repository if none is specified. The repository can be changed using the [Repository header]({{page version='' space='nxdoc' page='special-http-headers'}}#repository).
 
 ## Reindex a Repository or a Set of Documents
 
@@ -66,7 +66,7 @@ http://localhost:8080/nuxeo/api/v1/management/elasticsearch/reindex
 }
 ```
 
-To reindex a set of documents on a given Nuxeo repository matching the [NXQL]({{page page='nxql'}}) query:</br>
+To reindex a set of documents on a given Nuxeo repository matching the [NXQL]({{page version='' space='nxdoc' page='nxql'}}) query:</br>
 `SELECT * FROM Document WHERE dc:title LIKE 'My Title%'`
 
 ```curl
@@ -186,4 +186,4 @@ http://localhost:8080/nuxeo/api/v1/management/elasticsearch/optimize
 
 ## Learn More
 
-- [Elasticsearch Setup]({{page page='elasticsearch-setup'}}).
+- [Elasticsearch Setup]({{page version='' space='nxdoc' page='elasticsearch-setup'}}).

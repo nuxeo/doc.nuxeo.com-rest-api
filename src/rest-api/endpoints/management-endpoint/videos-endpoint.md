@@ -39,7 +39,7 @@ If successful, returns a [bulk status entity]({{page page='bulk-status-entity-ty
 
 The recompute status can be monitored using the [Bulk Endpoint]({{page page='bulk-endpoint'}}).
 
-### Status Codes\*\*
+### Status Codes
 
 - 200 _OK_ - Success.
 
