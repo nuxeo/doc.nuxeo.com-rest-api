@@ -62,4 +62,4 @@ http://localhost:8080/nuxeo/api/v1/management/bulk/0e1e6800-631a-4e04-a47c-241ea
 
 ## Learn More
 
-- [Bulk REST API]({{page page='bulk-action-framework'}}#bulk-rest-api).
+- [Bulk REST API]({{page version='' space='nxdoc' page='bulk-action-framework'}}#bulk-rest-api).

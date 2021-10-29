@@ -35,9 +35,9 @@ nuxeo.jwt.secret=abracadabra
 
 Then, to use the Management REST API:
 
-- Share the JWT secret (`abracadabra` here) between the Nuxeo Server and the client calling the Management REST API.
+- Share the JWT secret (`abracadabra` here) between the Nuxeo Server and the client calling the Management REST API,
 - Generate a JWT token with the user (`transient/technical_user` here) as claim subject,
-- Call the API using the `Authorization: Bearer JWT_TOKEN` header,
+- Call the API using the `Authorization: Bearer JWT_TOKEN` header.
 
 ### Deploy the Management REST API on a Separate HTTP Port
 

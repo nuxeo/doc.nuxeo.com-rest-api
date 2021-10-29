@@ -46,4 +46,4 @@ http://localhost:8080/nuxeo/api/v1/management/binaries/orphaned
 
 ## Learn More
 
-- [Garbage-Collecting Orphaned Binaries]({{page page='garbage-collecting-orphaned-binaries'}}).
+- [Garbage-Collecting Orphaned Binaries]({{page version='' space='nxdoc' page='garbage-collecting-orphaned-binaries'}}).

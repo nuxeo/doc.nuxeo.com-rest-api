@@ -3,7 +3,7 @@ title: REST API
 description: This page explains the organization and scope of the existing endpoints and other additional mechanisms which extend the behavior of the API.
 review:
     comment: ''
-    date: '2019-07-24'
+    date: '2021-10-29'
     status: ok
 labels:
     - url
