@@ -41,7 +41,7 @@ To reindex the `foobar` repository:
 
 ```curl
 curl -X POST -u Administrator:Administrator \
--H "Repository: foobar" \
+-H "X-NXRepository: foobar" \
 http://localhost:8080/nuxeo/api/v1/management/elasticsearch/reindex
 ```
 
