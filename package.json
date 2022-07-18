@@ -14,7 +14,7 @@
     "lodash.defaultsdeep": "^4.6.1",
     "node-yaml-config": "0.0.5",
     "nuxeo-docs-builder": "nuxeo/doc.nuxeo.com#v13.1.0",
-    "thenify": "^3.2.1"
+    "thenify": "^3.3.1"
   },
   "devDependencies": {
     "browser-sync": "^2.26.7",
