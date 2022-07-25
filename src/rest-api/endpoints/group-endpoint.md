@@ -41,7 +41,7 @@ If successful, returns a [group entity]({{page page='group-entity-type'}}) repre
 ## Get a Group
 
 ```
-GET /user/GROUP_ID
+GET /group/GROUP_ID
 ```
 
 ### Path Parameters
@@ -62,7 +62,7 @@ If successful, returns a [group entity]({{page page='group-entity-type'}}) repre
 ## Update a Group
 
 ```
-PUT /user/GROUP_ID
+PUT /group/GROUP_ID
 ```
 
 ### Path Parameters
@@ -94,7 +94,7 @@ If successful, returns a [group entity]({{page page='group-entity-type'}}) repre
 ## Delete a Group
 
 ```
-DELETE /user/GROUP_ID
+DELETE /group/GROUP_ID
 ```
 
 ### Path Parameters
