@@ -61,5 +61,6 @@ Here are the endpoints provided by the Management REST API.
 | [Elasticsearch]({{page page='elasticsearch-endpoint'}}) | **/elasticsearch** | Elasticsearch management.      |
 | [Pictures]({{page page='pictures-endpoint'}})           | **/pictures**      | Picture views recomputation.   |
 | [Probes]({{page page='probes-endpoint'}})               | **/probes**        | Probes information.            |
+| [Streams]({{page page='stream-endpoint'}})              | **/stream**        | Nuxeo Stream Management.       |
 | [Thumbnails]({{page page='thumbnails-endpoint'}})       | **/thumbnails**    | Thumbnails recomputation.      |
 | [WorkManager]({{page page='workmanager-endpoint'}})     | **/work-manager**  | Works in failure reprocessing. |
