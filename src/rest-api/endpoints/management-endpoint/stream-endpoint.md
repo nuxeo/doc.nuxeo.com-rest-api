@@ -1,14 +1,14 @@
 ---
 title: Stream Endpoint
 review:
-comment: ''
-date: '2022-08-29'
-status: ok
+  comment: ''
+  date: '2022-08-29'
+  status: ok
 labels:
-- http
-- rest-api
-  toc: true
-  tree_item_index: 600
+  - http
+  - rest-api
+toc: true
+tree_item_index: 600
 ---
 
 ## Get List of Streams
@@ -114,7 +114,7 @@ GET /management/stream/cat
 
 ### Response
 
-If successful, returns a Server-Sent Events (SSE) stream of JSON records. 
+If successful, returns a Server-Sent Events (SSE) stream of JSON records.
 
 ### Status Codes
 
@@ -183,7 +183,7 @@ data: {"type":"connect","message":"keepalive"}
 data: {"type":"connect","message":"keepalive"}
 
 data: {"type":"connect","message":"keepalive"}
-  
+
 data: {"type":"disconnect","message":"Read timeout, bye."}
 ```
 
@@ -277,7 +277,7 @@ http://localhost:8080/nuxeo/api/v1/management/stream/
           "group": "audit-writer",
           "stream": "audit-audit",
           "v": 2645
-        }, ... 
+        }, ...
         {
           "k": "nuxeo.streams.computation.processRecord",
           "computation": "work-common",
@@ -301,11 +301,11 @@ http://localhost:8080/nuxeo/api/v1/management/stream/
 }
 ```
 
-Generate a graphical representation of the Stream processing: 
+Generate a graphical representation of the Stream processing:
 
 ```curl
 # Get Plant UML JAR (it requires Graphviz see https://plantuml.com/faq-install for more info)
-curl https://netcologne.dl.sourceforge.net/project/plantuml/plantuml.jar -o /tmp/plantuml.jar 
+curl https://netcologne.dl.sourceforge.net/project/plantuml/plantuml.jar -o /tmp/plantuml.jar
 
 # Get the Plant UML representation of the Nuxeo Streams
 curl -u Administrator:Administrator \
@@ -435,7 +435,7 @@ can take few seconds after returning.
 
 ### Status Codes
 
-- 204 _NO_CONTENT_ 
+- 204 _NO_CONTENT_
 
 ### Sample
 
@@ -443,7 +443,7 @@ can take few seconds after returning.
 curl -XPUT -u Administrator:Administrator \
 "http://localhost:8080/nuxeo/api/v1/management/stream/consumer/stop?consumer=audit/writer"
 ```
- 
+
 This operation is traced at WARN level on all Nuxeo nodes running a consumer thread pool:
 ```log
 WARN  [LogStreamProcessor] Stopping computation thread pool: Name{id='audit-writer', urn='audit/writer'}
@@ -503,7 +503,7 @@ and after the move.
 
 ### Status Codes
 
-- 409 _CONFLICT_ - When consumers are not stopped 
+- 409 _CONFLICT_ - When consumers are not stopped
 - 200 _OK_ - Success.
 
 ### Sample
@@ -608,7 +608,7 @@ curl -XPUT -u Administrator:Administrator \
 ```
 
 
-## Change Consumer Position to a Specific Offset 
+## Change Consumer Position to a Specific Offset
 
 ```
 PUT /management/stream/consumer/position/offset
@@ -694,7 +694,7 @@ Move the position to record that were appended to the stream just after the give
 and after the move.
 
 ### Status Codes
-- 
+-
 - 409 _CONFLICT_ - When consumers are not stopped
 - 200 _OK_ - Success.
 
