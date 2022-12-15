@@ -63,4 +63,5 @@ Here are the endpoints provided by the Management REST API.
 | [Probes]({{page page='probes-endpoint'}})               | **/probes**        | Probes information.            |
 | [Streams]({{page page='stream-endpoint'}})              | **/stream**        | Nuxeo Stream Management.       |
 | [Thumbnails]({{page page='thumbnails-endpoint'}})       | **/thumbnails**    | Thumbnails recomputation.      |
+| [Versions]({{page page='versions-endpoint'}})           | **/versions**      | Versions management.           |
 | [WorkManager]({{page page='workmanager-endpoint'}})     | **/work-manager**  | Works in failure reprocessing. |
