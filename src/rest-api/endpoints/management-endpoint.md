@@ -53,16 +53,17 @@ nuxeo.server.http.managementPort=9090
 
 Here are the endpoints provided by the Management REST API.
 
-| Name                                                    | Endpoint           | Description                    |
-|---------------------------------------------------------|--------------------|--------------------------------|
-| [Binaries]({{page page='binaries-endpoint'}})           | **/binaries**      | Binaries management.           |
-| [Bulk]({{page page='bulk-endpoint'}})                   | **/bulk**          | Bulk actions management.       |
-| [Distribution]({{page page='distribution-endpoint'}})   | **/distribution**  | Distribution information.      |
-| [Elasticsearch]({{page page='elasticsearch-endpoint'}}) | **/elasticsearch** | Elasticsearch management.      |
-| [Fulltext]({{page page='fulltext-endpoint'}})           | **/fulltext**      | Fulltext management.           |
-| [Pictures]({{page page='pictures-endpoint'}})           | **/pictures**      | Picture views recomputation.   |
-| [Probes]({{page page='probes-endpoint'}})               | **/probes**        | Probes information.            |
-| [Streams]({{page page='stream-endpoint'}})              | **/stream**        | Nuxeo Stream Management.       |
-| [Thumbnails]({{page page='thumbnails-endpoint'}})       | **/thumbnails**    | Thumbnails recomputation.      |
-| [Versions]({{page page='versions-endpoint'}})           | **/versions**      | Versions management.           |
-| [WorkManager]({{page page='workmanager-endpoint'}})     | **/work-manager**  | Works in failure reprocessing. |
+| Name                                                       | Endpoint             | Description                    |
+|------------------------------------------------------------|----------------------|--------------------------------|
+| [Binaries]({{page page='binaries-endpoint'}})              | **/binaries**        | Binaries management.           |
+| [Bulk]({{page page='bulk-endpoint'}})                      | **/bulk**            | Bulk actions management.       |
+| [Distribution]({{page page='distribution-endpoint'}})      | **/distribution**    | Distribution information.      |
+| [Elasticsearch]({{page page='elasticsearch-endpoint'}})    | **/elasticsearch**   | Elasticsearch management.      |
+| [Fulltext]({{page page='fulltext-endpoint'}})              | **/fulltext**        | Fulltext management.           |
+| [PageProviders]({{page page='page-providers-endpoint'}})   | **/page-providers**  | Page Providers information.    |
+| [Pictures]({{page page='pictures-endpoint'}})              | **/pictures**        | Picture views recomputation.   |
+| [Probes]({{page page='probes-endpoint'}})                  | **/probes**          | Probes information.            |
+| [Streams]({{page page='stream-endpoint'}})                 | **/stream**          | Nuxeo Stream Management.       |
+| [Thumbnails]({{page page='thumbnails-endpoint'}})          | **/thumbnails**      | Thumbnails recomputation.      |
+| [Versions]({{page page='versions-endpoint'}})              | **/versions**        | Versions management.           |
+| [WorkManager]({{page page='workmanager-endpoint'}})        | **/work-manager**    | Works in failure reprocessing. |
