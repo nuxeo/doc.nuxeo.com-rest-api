@@ -65,4 +65,5 @@ Here are the endpoints provided by the Management REST API.
 | [Streams]({{page page='stream-endpoint'}})              | **/stream**        | Nuxeo Stream Management.       |
 | [Thumbnails]({{page page='thumbnails-endpoint'}})       | **/thumbnails**    | Thumbnails recomputation.      |
 | [Versions]({{page page='versions-endpoint'}})           | **/versions**      | Versions management.           |
+| [Workflows]({{page page='workflows-endpoint'}})         | **/workflows**     | Workflows management.          |
 | [WorkManager]({{page page='workmanager-endpoint'}})     | **/work-manager**  | Works in failure reprocessing. |
