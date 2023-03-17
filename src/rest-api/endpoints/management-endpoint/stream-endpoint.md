@@ -318,6 +318,162 @@ java  -DPLANTUML_LIMIT_SIZE=16384  -jar /tmp/plantuml.jar /tmp/streams.puml -tsv
 x-www-browser /tmp/streams.svg
 ```
 
+## Get Scaling Analysis
+```
+GET /management/stream/scale
+```
+
+This endpoints describes if the current load requires scale up (add worker nodes) or scale down (remove worker nodes).
+
+The best number of worker nodes is determined by trying to maximize the concurrency on active computations, that are limited by the number of partitions in their input streams.
+
+Note that we don't scale to 0 worker node, because there is always a worker node needed in order to process async tasks that are necessary to report metrics, log audit entries, process scheduled tasks ...
+
+The scale metric and the number of worker nodes are also exposed as metric in realtime:
+- nuxeo.streams.scale.metric
+- nuxeo.cluster.worker.count
+
+### Query Parameters
+
+None
+
+### Response
+
+Returns a JSON describing the scaling state:
+
+- scale/currentNodes: The current number of worker nodes.
+- scale/bestNodes: The best number of worker nodes to handle the load.
+- scale/metric: A scale metric that indicates the number of node to add (> 0) or to remove (<0), 0 should be the target for optimal processing.
+- nodes[]: The list of nodes information where computations are running
+- computations[]: list of active computations (with a lag), including all metrics per nodes and cumulated at cluster level, you can find an ETA (estimated time of completion in millisecond) with the current number of worker nodes and with the optimal number of nodes.
+
+### Status Codes
+
+- 200 _OK_ - Success.
+
+### Sample
+
+```curl
+curl -u Administrator:Administrator \
+http://localhost:8080/nuxeo/api/v1/management/stream/scale
+```
+
+```json
+{
+    "scale": {
+        "currentNodes": 1,
+        "bestNodes": 3,
+        "metric": 2
+    },
+    "nodes": [
+        {
+            "hostname": "nuxeo-worker-5d4db8c4cc-zhndc",
+            "cpuCores": "12",
+            "created": "2023-03-16T14:23:52Z",
+            "ip": "10.60.114.6",
+            "jvmHeapSize": "25769803776",
+            "nodeId": "1d43600e-6c5c-4b35-aeef-fd44cf720daa",
+            "alive": "2023-03-16T14:36:25Z",
+            "type": "worker"
+        },
+        {
+            "hostname": "nuxeo-api-c66f6595-2sbgt",
+            "cpuCores": "12",
+            "created": "2023-03-16T14:24:24Z",
+            "ip": "10.60.112.6",
+            "jvmHeapSize": "25769803776",
+            "nodeId": "db9f6382-65ca-4bb4-99fb-edb47ebb4ba8",
+            "alive": "2023-03-16T14:36:24Z",
+            "type": "front"
+        }
+    ],
+    "computations": [
+        {
+            "computation": "work-common",
+            "streams": {
+                "work-common": {
+                    "stream": "work-common",
+                    "partitions": 12,
+                    "lag": 11223,
+                    "end": 99515,
+                    "latency": 335509
+                }
+            },
+            "nodes": [
+                {
+                    "ip": "10.60.114.6",
+                    "threads": 4,
+                    "timestamp": 1678977385,
+                    "count": 199030,
+                    "sum": 4201101241938,
+                    "rate1m": 437.83270847387524,
+                    "rate5m": 319.5702889885148,
+                    "min": 0.003909759,
+                    "p50": 0.004975371,
+                    "mean": 0.01355667013572912,
+                    "p95": 0.101731737,
+                    "max": 0.214049308,
+                    "stddev": 0.02899623610194394
+                }
+            ],
+            "current": {
+                "nodes": 1,
+                "threads": 4,
+                "rate1m": 437.8327,
+                "eta": 25
+            },
+            "best": {
+                "nodes": 3,
+                "threads": 12,
+                "rate1m": 1313.498,
+                "eta": 8
+            }
+        },
+        {
+            "computation": "work-elasticSearchIndexing",
+            "streams": {
+                "work-elasticSearchIndexing": {
+                    "stream": "work-elasticSearchIndexing",
+                    "partitions": 18,
+                    "lag": 15,
+                    "end": 90320,
+                    "latency": 545
+                }
+            },
+            "nodes": [
+                {
+                    "ip": "10.60.114.6",
+                    "threads": 6,
+                    "timestamp": 1678977385,
+                    "count": 203038,
+                    "sum": 892021842027,
+                    "rate1m": 437.73966331810846,
+                    "rate5m": 322.5043154801199,
+                    "min": 0.002208503,
+                    "p50": 0.002897732,
+                    "mean": 0.0030058141376983634,
+                    "p95": 0.003744013,
+                    "max": 0.014256694,
+                    "stddev": 6.861028639799985E-4
+                }
+            ],
+            "current": {
+                "nodes": 1,
+                "threads": 6,
+                "rate1m": 437.73965,
+                "eta": 0
+            },
+            "best": {
+                "nodes": 3,
+                "threads": 18,
+                "rate1m": 1313.219,
+                "eta": 0
+            }
+        }
+    ]
+}
+```
+
 
 ## Get Consumer Positions
 
