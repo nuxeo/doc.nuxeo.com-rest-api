@@ -11,6 +11,10 @@ toc: true
 tree_item_index: 100
 ---
 
+{{#> callout type='warning' heading='Deprecated Garbage Collection'}}
+For MongoDB there is a new implementation that solves scalability problems, when possible use the new [Blobs endpoint]({{page page='blobs-endpoint'}}).
+{{/callout}}
+
 ## Garbage Collect Orphaned (unused) Binaries
 
 ```
