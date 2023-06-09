@@ -109,3 +109,7 @@ where:
  - `result.totalSize` is the sum of the size of all the scrolled blob from the blob provider(s) of the repository in bytes (here ~8 MB)
  - `result.deletedSize` is the sum of the size of the blobs that were garbage collected in bytes (here ~10 KB)
  - `dryRun` whether the blobs were effectively deleted
+
+ ## Learn More
+
+- [Garbage-Collecting Orphaned Blobs]({{page space='nxdoc' page='garbage-collecting-orphaned-blobs'}}).
