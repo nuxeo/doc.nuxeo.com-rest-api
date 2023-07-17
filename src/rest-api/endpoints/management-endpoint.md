@@ -58,9 +58,11 @@ Here are the endpoints provided by the Management REST API.
 | [Binaries]({{page page='binaries-endpoint'}})              | **/binaries**        | Binaries management.           |
 | [Blobs]({{page page='blobs-endpoint'}})                    | **/blobs**           | Blobs management.              |
 | [Bulk]({{page page='bulk-endpoint'}})                      | **/bulk**            | Bulk actions management.       |
+| [Configuration]({{page page='configuration-endpoint'}})    | **/configuration**   | Configuration information.     |
 | [Distribution]({{page page='distribution-endpoint'}})      | **/distribution**    | Distribution information.      |
 | [Elasticsearch]({{page page='elasticsearch-endpoint'}})    | **/elasticsearch**   | Elasticsearch management.      |
 | [Fulltext]({{page page='fulltext-endpoint'}})              | **/fulltext**        | Fulltext management.           |
+| [Migration]({{page page='migration-endpoint'}})            | **/migration**       | Migrations management.         |
 | [PageProviders]({{page page='page-providers-endpoint'}})   | **/page-providers**  | Page Providers information.    |
 | [Pictures]({{page page='pictures-endpoint'}})              | **/pictures**        | Picture views recomputation.   |
 | [Probes]({{page page='probes-endpoint'}})                  | **/probes**          | Probes information.            |
