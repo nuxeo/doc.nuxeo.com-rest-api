@@ -29,7 +29,8 @@ If successful, returns a JSON representation of configured properties (the ones 
 ### Sample
 
 ```curl
-curl -u <user>:<password> <nuxeoHost>:8080/nuxeo/api/v1/management/configuration
+curl -u Administrator:Administrator \
+http://localhost:8080/nuxeo/api/v1management/configuration
 ```
 
 ```json
