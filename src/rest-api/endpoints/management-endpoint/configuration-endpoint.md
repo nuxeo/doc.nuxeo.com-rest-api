@@ -30,7 +30,7 @@ If successful, returns a JSON representation of configured properties (the ones 
 
 ```curl
 curl -u Administrator:Administrator \
-http://localhost:8080/nuxeo/api/v1management/configuration
+http://localhost:8080/nuxeo/api/v1/management/configuration
 ```
 
 ```json
