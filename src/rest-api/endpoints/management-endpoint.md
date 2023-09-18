@@ -66,6 +66,7 @@ Here are the endpoints provided by the Management REST API.
 | [PageProviders]({{page page='page-providers-endpoint'}})   | **/page-providers**  | Page Providers information.    |
 | [Pictures]({{page page='pictures-endpoint'}})              | **/pictures**        | Picture views recomputation.   |
 | [Probes]({{page page='probes-endpoint'}})                  | **/probes**          | Probes information.            |
+| [Scheduler]({{page page='scheduler-endpoint'}})            | **/scheduler**       | Scheduler Management.          |
 | [Streams]({{page page='stream-endpoint'}})                 | **/stream**          | Nuxeo Stream Management.       |
 | [Thumbnails]({{page page='thumbnails-endpoint'}})          | **/thumbnails**      | Thumbnails recomputation.      |
 | [Versions]({{page page='versions-endpoint'}})              | **/versions**        | Versions management.           |
