@@ -62,7 +62,7 @@ PUT /management/stop
 
 ### Response
 
-Always 204, this stops the scheduler service cluster-wide. The stops survives a server restart.
+Always 204, this stops the scheduler service cluster-wide. The stop survives a server restart.
 
 ### Status Codes
 
@@ -83,7 +83,7 @@ PUT /management/start
 
 ### Response
 
-Always 204, this starts the scheduler service cluster wild.
+Always 204, this starts the scheduler service cluster-wide.
 
 ### Status Codes
 
