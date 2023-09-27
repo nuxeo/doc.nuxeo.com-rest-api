@@ -14,7 +14,7 @@ tree_item_index: 600
 ## Get All Schedules
 
 ```
-GET /management/schedules
+GET /management/scheduler
 ```
 
 ### Response
@@ -57,7 +57,7 @@ http://localhost:8080/nuxeo/api/v1/management/scheduler
 ## Stop the scheduler
 
 ```
-PUT /management/stop
+PUT /management/scheduler/stop
 ```
 
 ### Response
@@ -78,7 +78,7 @@ http://localhost:8080/nuxeo/api/v1/management/scheduler/stop
 ## Start the scheduler
 
 ```
-PUT /management/start
+PUT /management/scheduler/start
 ```
 
 ### Response
