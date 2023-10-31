@@ -34,6 +34,7 @@ The garbage collection can be monitored using the [Bulk Endpoint]({{page page='b
 ### Status Codes
 
 - 200 *OK* - Success.
+- 409 *Conflict* - A garbage collect is already in progress.
 - 501 *OK* - Not implemented.
 
 This garbage collection is only implemented on instances working with:

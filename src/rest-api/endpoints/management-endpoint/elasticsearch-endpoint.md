@@ -21,9 +21,9 @@ POST /management/elasticsearch/reindex
 
 ### Query Parameters
 
-| Parameter Name | Type       | Description     | Notes    |
-| -------------- | ---------- | --------------- | -------- |
-| **query**      | **string** | The NXQL query. | Optional |
+| Parameter Name | Type       | Description     | Notes                                                  |
+| -------------- | ---------- | --------------- |--------------------------------------------------------|
+| **query**      | **string** | The NXQL query. | Optional, no query means reindex the entire repository |
 
 ### Response
 
@@ -34,10 +34,11 @@ The index status can be monitored using the [Bulk Endpoint]({{page page='bulk-en
 ### Status Codes
 
 - 200 *OK* - Success.
+- 409 *Conflict* - A repository reindex is already in progress.
 
 ### Sample
 
-To reindex the `foobar` repository:
+To reindex the `foobar` repository, this will create a new index (applying settings and mappings):
 
 ```curl
 curl -X POST -u Administrator:Administrator \
