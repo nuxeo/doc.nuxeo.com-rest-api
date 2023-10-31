@@ -39,6 +39,7 @@ The recompute status can be monitored using the [Bulk Endpoint]({{page page='bul
 ### Status Codes**
 
 - 200 *OK* - Success.
+- 409 *Conflict* - A recompute with an empty query is already in progress.
 
 ### Sample
 

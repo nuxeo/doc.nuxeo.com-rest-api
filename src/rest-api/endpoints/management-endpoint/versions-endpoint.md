@@ -21,11 +21,12 @@ DELETE /management/versions/orphaned
 
 If successful, returns a [bulk status entity]({{page page='bulk-status-entity-type'}}) representing the bulk action status of the garbage collection bulk action.
 
-The recompute status can be monitored using the [Bulk Endpoint]({{page page='bulk-endpoint'}}).
+The status can be monitored using the [Bulk Endpoint]({{page page='bulk-endpoint'}}).
 
 ### Status Codes
 
 - 200 *OK* - Success.
+- 409 *Conflict* - A garbage collect is already in progress.
 
 ### Sample
 
