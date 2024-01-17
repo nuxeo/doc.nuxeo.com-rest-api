@@ -20,7 +20,7 @@ GET /management/configuration
 
 ### Response
 
-If successful, returns a JSON representation of configured properties (the ones from the configuration.properties file) and the runtime properties (the ones from Framework#getProperties) with sensitive informations redacted.
+If successful, returns a JSON representation of the configured properties (the ones from the configuration.properties file), the runtime properties (the ones from Framework#getProperties) and the configuration service properties (the ones contributed to the `ConfigurationService`). Sensitive information is redacted.
 
 ### Status Codes
 
@@ -36,11 +36,15 @@ http://localhost:8080/nuxeo/api/v1/management/configuration
 ```json
 {
   "configuredProperties": {
-    "NUXEO_HOME": "...",
+    "some.nuxeo.property.from.properties.file": "...",
     ...
-  }
+  },
   "runtimeProperties": {
-    "NUXEO_HOME": "...",
+    "some.nuxeo.runtime.property": "...",
+    ...
+  },
+  "configurationServiceProperties": {
+    "some.nuxeo.property from.configuration.service": "...",
     ...
   }
 }
