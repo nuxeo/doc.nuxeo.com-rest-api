@@ -146,26 +146,7 @@ http://localhost:8080/nuxeo/api/v1/management/elasticsearch/1fa9d3fa-04cc-4956-b
 }
 ```
 
-## Flush a Repository
-
-```
-POST /management/elasticsearch/flush
-```
-
-### Status Codes
-
-- 204 *No Content* - Success.
-
-### Sample
-
-To flush the `default` repository:
-
-```curl
-curl -X POST -u Administrator:Administrator \
-http://localhost:8080/nuxeo/api/v1/management/elasticsearch/flush
-```
-
-## Optimize a Repository
+## Optimize the Repository Index
 
 ```
 POST /management/elasticsearch/optimize
@@ -177,13 +158,15 @@ POST /management/elasticsearch/optimize
 
 ### Sample
 
-To optimize the `default` repository:
+To optimize the `default` index repository:
 
 ```curl
 curl -X POST -u Administrator:Administrator \
 http://localhost:8080/nuxeo/api/v1/management/elasticsearch/optimize
 
 ```
+
+Note that this endpoint is now called [`_forcemerge`](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-forcemerge.html) in Elastic.
 
 ## Learn More
 
