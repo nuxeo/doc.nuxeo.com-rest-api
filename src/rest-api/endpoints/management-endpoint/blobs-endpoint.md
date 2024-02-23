@@ -21,9 +21,10 @@ Garbage collect all the orphaned document's blobs (which are not referenced by a
 
 ### Query Parameters
 
-| Parameter Name | Type        | Description                     | Notes                      |
-| -------------- | ----------- | ------------------------------- | -------------------------- |
-| **dryRun**     | **boolean** | Do not effectively delete blobs | Optional, default is false |
+| Parameter Name | Type        | Description                        | Notes                          |
+| -------------- | ----------- | ---------------------------------- | ------------------------------ |
+| **dryRun**     | **boolean** | Do not effectively delete blobs    | Optional, default is false     |
+| **queryLimit** | **long**    | Limit the number of blob to be GC  | Optional, default is unlimited |
 
 ### Response
 
