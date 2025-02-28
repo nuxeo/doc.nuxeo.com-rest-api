@@ -1,8 +1,8 @@
 ---
-title: Elasticsearch Endpoint
+title: Search Endpoint
 review:
   comment: ''
-  date: '2021-10-26'
+  date: '2025-03-03'
   status: ok
 labels:
   - http
@@ -11,16 +11,16 @@ toc: true
 tree_item_index: 400
 ---
 
-{{#> callout type='warning' heading='Deprecated Endpoint in LTS 2025'}}
-Since LTS 2025 supports multiple Search Engines, this endpoint is no longer relevant and is replaced by the new [Search management endpoint]({{page page='search-endpoint'}}).
+{{#> callout type='warning' heading='Only available since LTS 2025'}}
+This endpoint has been introduced in LTS 2025 and supersedes [Elasticsearch management endpoint]({{page page='elasticsearch-endpoint'}}).
 {{/callout}}
 
-The Elasticsearch endpoint works with the `default` repository if none is specified. The repository can be changed using the [Repository header]({{page version='' space='nxdoc' page='special-http-headers'}}#repository).
+The Search endpoint works with the `default` repository if none is specified. The repository can be changed using the [Repository header]({{page version='' space='nxdoc' page='special-http-headers'}}#repository).
 
 ## Reindex a Repository or a Set of Documents
 
 ```
-POST /management/elasticsearch/reindex
+POST /management/search/reindex
 ```
 
 ### Query Parameters
@@ -47,7 +47,7 @@ To reindex the `foobar` repository, this will create a new index (applying setti
 ```curl
 curl -X POST -u Administrator:Administrator \
 -H "X-NXRepository: foobar" \
-http://localhost:8080/nuxeo/api/v1/management/elasticsearch/reindex
+http://localhost:8080/nuxeo/api/v1/management/search/reindex
 ```
 
 ```json
@@ -76,7 +76,7 @@ To reindex a set of documents on a given Nuxeo repository matching the [NXQL]({{
 
 ```curl
 curl -X POST -u Administrator:Administrator \
-http://localhost:8080/nuxeo/api/v1/management/elasticsearch/reindex?query=SELECT+%2A+FROM+document+WHERE+dc%3Atitle+LIKE+%27My+Title%25%27%27
+http://localhost:8080/nuxeo/api/v1/management/search/reindex?query=SELECT+%2A+FROM+document+WHERE+dc%3Atitle+LIKE+%27My+Title%25%27%27
 ```
 
 ```json
@@ -103,7 +103,7 @@ http://localhost:8080/nuxeo/api/v1/management/elasticsearch/reindex?query=SELECT
 ## Reindex a Document and Its Children Recursively
 
 ```
-POST /management/elasticsearch/DOC_ID/reindex
+POST /management/search/DOC_ID/reindex
 ```
 
 ### Path Parameters
@@ -126,7 +126,7 @@ The index status can be monitored using the [Bulk Endpoint]({{page page='bulk-en
 
 ```curl
 curl -X POST -u Administrator:Administrator \
-http://localhost:8080/nuxeo/api/v1/management/elasticsearch/1fa9d3fa-04cc-4956-bc6c-8317b803e131/reindex
+http://localhost:8080/nuxeo/api/v1/management/search/1fa9d3fa-04cc-4956-bc6c-8317b803e131/reindex
 ```
 
 ```json
@@ -150,32 +150,10 @@ http://localhost:8080/nuxeo/api/v1/management/elasticsearch/1fa9d3fa-04cc-4956-b
 }
 ```
 
-## Optimize the Repository Index
-
-```
-POST /management/elasticsearch/optimize
-```
-
-### Status Codes
-
-- 204 *No Content* - Success.
-
-### Sample
-
-To optimize the `default` repository index:
-
-```curl
-curl -X POST -u Administrator:Administrator \
-http://localhost:8080/nuxeo/api/v1/management/elasticsearch/optimize
-
-```
-
-Note that this endpoint is now called [`_forcemerge`](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-forcemerge.html) in Elastic.
-
 ## Check for search Desynchronisation between Elastic and the Repository
 
 ```
-GET /management/elasticsearch/checkSearch
+GET /management/search/checkSearch
 ```
 
 ### Query Parameters
@@ -187,11 +165,10 @@ GET /management/elasticsearch/checkSearch
 
 ### Response
 
-If successful, returns a JSON response containing information about the search results from 2 page providers: `repo` and
-`elastic`.
+If successful, returns a JSON response containing information about the search results from 2 page providers: `repository/repository` and
+`opensearch/enhanced`.
 
-The `repo` result is run against repository backend using `nxql_repo_search` page provider, while the `elastic` is run
-against `nxql_elastic_search` page provider.
+The `repoistory/repository` result is run against repository Search Client on the repository indexbackend using `nxql_repo_search` page provider, while the `opensearch/enhanced` is run against `nxql_elastic_search` page provider.
 
 Note that only document identifiers are returned, this is on purpose because management endpoint should not expose
 document content.
@@ -208,7 +185,7 @@ To check the number of visible documents in Elastic and in the repository:
 curl -X GET -u Administrator:Administrator \
    --data-urlencode "nxql=SELECT * FROM Document WHERE ecm:isProxy = 0 AND ecm:isVersion = 0 AND ecm:isTrashed = 0" \
    --data-urlencode "pageSize=5" \
-   http://localhost:8080/nuxeo/api/v1/management/elasticsearch/checkSearch
+   http://localhost:8080/nuxeo/api/v1/management/search/checkSearch
 ```
 
 ```json
