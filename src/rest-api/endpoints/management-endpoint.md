@@ -63,6 +63,7 @@ Here are the endpoints provided by the Management REST API.
 | [Elasticsearch]({{page page='elasticsearch-endpoint'}})    | **/elasticsearch**   | Elasticsearch management.      |
 | [Fulltext]({{page page='fulltext-endpoint'}})              | **/fulltext**        | Fulltext management.           |
 | [Migration]({{page page='migration-endpoint'}})            | **/migration**       | Migrations management.         |
+| [OAtuh2]({{page page='oauth2-endpoint'}})                  | **/oauth2**          | OAuth2 management.             |
 | [PageProviders]({{page page='page-providers-endpoint'}})   | **/page-providers**  | Page Providers information.    |
 | [Pictures]({{page page='pictures-endpoint'}})              | **/pictures**        | Picture views recomputation.   |
 | [Probes]({{page page='probes-endpoint'}})                  | **/probes**          | Probes information.            |
