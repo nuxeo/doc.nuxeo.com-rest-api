@@ -11,7 +11,7 @@ toc: true
 tree_item_index: 200
 ---
 
-## Get a Bulk Action Status
+## Get a Bulk Command Status
 
 ```
 GET /management/bulk/COMMAND_ID
@@ -25,7 +25,7 @@ GET /management/bulk/COMMAND_ID
 
 ### Response
 
-If successful, returns a [bulk status entity]({{page page='bulk-status-entity-type'}}) representing the bulk action status with the given `COMMAND_ID` path parameter.
+If successful, returns a [bulk status entity]({{page page='bulk-status-entity-type'}}) representing the bulk command status with the given `COMMAND_ID` path parameter.
 
 ### Status Codes
 
@@ -59,6 +59,36 @@ http://localhost:8080/nuxeo/api/v1/management/bulk/0e1e6800-631a-4e04-a47c-241ea
   "processingMillis": 0
 }
 ```
+
+## Abort a Bulk Command
+
+```
+DELETE /management/bulk/COMMAND_ID
+```
+
+### Path Parameters
+
+| Parameter Name | Type       | Description     |
+| -------------- | ---------- | --------------- |
+| **COMMAND_ID** | **string** | The command id. |
+
+### Response
+
+If successful, returns the updated [bulk status entity]({{page page='bulk-status-entity-type'}}).
+
+### Status Codes
+
+- 200 *OK* - Command is marked as cancelled.
+- 400 *Bad request* - Command is completed and cannot be cancelled.
+- 404 *Not Found* - Command with the given `COMMAND_ID` does not exist.
+
+### Sample
+
+```curl
+curl -u Administrator:Administrator -X DELETE \
+http://localhost:8080/nuxeo/api/v1/management/bulk/0e1e6800-631a-4e04-a47c-241ea7b3596a
+```
+
 
 ## Learn More
 
