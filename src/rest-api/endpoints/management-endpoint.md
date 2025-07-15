@@ -59,6 +59,7 @@ Here are the endpoints provided by the Management REST API.
 | [Blobs]({{page page='blobs-endpoint'}})                    | **/blobs**           | Blobs management.              |
 | [Bulk]({{page page='bulk-endpoint'}})                      | **/bulk**            | Bulk actions management.       |
 | [Configuration]({{page page='configuration-endpoint'}})    | **/configuration**   | Configuration information.     |
+| [Connect]({{page page='connect-endpoint'}})                | **/connect**         | Connect information.           |
 | [Distribution]({{page page='distribution-endpoint'}})      | **/distribution**    | Distribution information.      |
 | [Elasticsearch]({{page page='elasticsearch-endpoint'}})    | **/elasticsearch**   | Elasticsearch management.      |
 | [Fulltext]({{page page='fulltext-endpoint'}})              | **/fulltext**        | Fulltext management.           |
