@@ -9,7 +9,7 @@ labels:
   - rest-api
   - connect
 toc: true
-tree_item_index: 600
+tree_item_index: 270
 ---
 
 ## Get a Nuxeo Connect registration status

@@ -9,7 +9,7 @@ labels:
   - rest-api
   - migration
 toc: true
-tree_item_index: 600
+tree_item_index: 400
 ---
 
 ## Get All Migration Objects

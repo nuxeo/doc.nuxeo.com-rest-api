@@ -9,7 +9,7 @@ labels:
   - rest-api
   - configuration
 toc: true
-tree_item_index: 600
+tree_item_index: 250
 ---
 
 ## Get a Nuxeo instance's configuration
