@@ -25,9 +25,10 @@ POST /management/search/reindex
 
 ### Query Parameters
 
-| Parameter Name | Type       | Description     | Notes                                                  |
-| -------------- | ---------- | --------------- |--------------------------------------------------------|
-| **query**      | **string** | The NXQL query. | Optional, no query means reindex the entire repository |
+| Parameter Name | Type       | Description                            | Notes                                                         |
+|----------------|------------|----------------------------------------|---------------------------------------------------------------|
+| **query**      | **string** | The NXQL query.                        | Optional, no query means reindex the entire repository        |
+| **queryLimit** | **long**   | Limit the number of document to index. | Optional, only taken in account if an NXQL query is provided. |
 
 ### Response
 
