@@ -20,10 +20,12 @@ GET /management/stream/streams
 ### Response
 
 If successful, returns a JSON representation of all streams.
+This endpoint requires the `metrics.streams.enabled=true`.
 
 ### Status Codes
 
 - 200 _OK_ - Success.
+- 403 _FORBIDDEN_ - Stream metrics is not activated.
 
 ### Sample
 
@@ -70,10 +72,12 @@ GET /management/stream/consumers
 ### Response
 
 If successful, returns a JSON representation of the consumers for a given stream.
+This endpoint requires the `metrics.streams.enabled=true`.
 
 ### Status Codes
 
 - 200 _OK_ - Success.
+- 403 _FORBIDDEN_ - Stream metrics is not activated.
 
 ### Sample
 
@@ -205,6 +209,7 @@ GET /management/stream
 | **format**     | **string** | The output format, only puml is supported. | Optional |
 
 Default format is JSON representation, a Plant UML output can be requested.
+This endpoint requires the `metrics.streams.enabled=true`.
 
 ### Response
 
@@ -218,6 +223,7 @@ The format parameter enables to ask for a graphical Plant UML representation ins
 ### Status Codes
 
 - 200 _OK_ - Success.
+- 403 _FORBIDDEN_ - Stream metrics is not activated.
 
 ### Sample
 
@@ -333,6 +339,8 @@ The scale metric and the number of worker nodes are also exposed as metric in re
 - nuxeo.streams.scale.metric
 - nuxeo.cluster.worker.count
 
+This endpoint requires the `metrics.streams.enabled=true`.
+
 ### Query Parameters
 
 None
@@ -350,6 +358,7 @@ Returns a JSON describing the scaling state:
 ### Status Codes
 
 - 200 _OK_ - Success.
+- 403 _FORBIDDEN_ - Stream metrics is not activated.
 
 ### Sample
 
