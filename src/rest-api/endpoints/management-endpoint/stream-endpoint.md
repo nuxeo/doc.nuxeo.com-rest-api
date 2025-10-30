@@ -204,11 +204,11 @@ GET /management/stream
 
 ### Query Parameters
 
-| Parameter Name | Type       | Description                                | Notes    |
-|----------------| ---------- |--------------------------------------------|----------|
-| **format**     | **string** | The output format, only puml is supported. | Optional |
+| Parameter Name | Type       | Description                               | Notes    |
+|----------------| ---------- |-------------------------------------------|----------|
+| **format**     | **string** | The output format, can be `puml` or `d2`. | Optional |
 
-Default format is JSON representation, a Plant UML output can be requested.
+Default format is JSON representation, a [D2](https://d2lang.com/) (since 2023.39/2025.11) or [Plant UML](https://plantuml.com/) output can be requested.
 This endpoint requires the `metrics.streams.enabled=true`.
 
 ### Response
@@ -218,7 +218,7 @@ Returns a JSON representation of all available Nuxeo Stream information:
 - the list of deployed Stream processors and topologies
 - all related metrics
 
-The format parameter enables to ask for a graphical Plant UML representation instead of JSON.
+The format parameter enables to ask for a Diagram output instead of JSON.
 
 ### Status Codes
 
@@ -307,9 +307,22 @@ http://localhost:8080/nuxeo/api/v1/management/stream/
 }
 ```
 
-Generate a graphical representation of the Stream processing:
+#### Generate an SVG D2 Diagram
 
-```curl
+[Install D2](https://d2lang.com/tour/install/)
+
+```bash
+# Get the D2 representation of the Nuxeo Streams
+curl -u Administrator:Administrator \
+http://localhost:8080/nuxeo/api/v1/management/stream/?format=d2 -o /tmp/streams.d2
+
+# Generate a SVG
+d2 --scale 0.2 /tmp/streams.d2 /tmp/streams.svg
+```
+
+#### Generate an SVG Plant UML Diagram
+
+```bash
 # Get Plant UML JAR (it requires Graphviz see https://plantuml.com/faq-install for more info)
 curl https://netcologne.dl.sourceforge.net/project/plantuml/plantuml.jar -o /tmp/plantuml.jar
 
@@ -319,9 +332,6 @@ http://localhost:8080/nuxeo/api/v1/management/stream/?format=puml -o /tmp/stream
 
 # Generate a SVG
 java  -DPLANTUML_LIMIT_SIZE=16384  -jar /tmp/plantuml.jar /tmp/streams.puml -tsvg
-
-# view it
-x-www-browser /tmp/streams.svg
 ```
 
 ## Get Scaling Analysis
