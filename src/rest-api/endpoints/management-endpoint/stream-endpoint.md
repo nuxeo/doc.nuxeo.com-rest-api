@@ -2,7 +2,7 @@
 title: Stream Endpoint
 review:
   comment: ''
-  date: '2022-08-29'
+  date: '2025-11-12'
   status: ok
 labels:
   - http
@@ -334,22 +334,31 @@ http://localhost:8080/nuxeo/api/v1/management/stream/?format=puml -o /tmp/stream
 java  -DPLANTUML_LIMIT_SIZE=16384  -jar /tmp/plantuml.jar /tmp/streams.puml -tsvg
 ```
 
-## Get Scaling Analysis
+## Get Scaling Analysis{{> anchor 'scale'}}
 ```
 GET /management/stream/scale
 ```
 
-This endpoints describes if the current load requires scale up (add worker nodes) or scale down (remove worker nodes).
+This endpoint analyzes the current cluster workload and determines whether scaling is needed. It provides recommendations for scaling out (adding worker nodes) or scaling in (removing worker nodes) based on the active computations.
 
-The best number of worker nodes is determined by trying to maximize the concurrency on active computations, that are limited by the number of partitions in their input streams.
+### How It Works
 
-Note that we don't scale to 0 worker node, because there is always a worker node needed in order to process async tasks that are necessary to report metrics, log audit entries, process scheduled tasks ...
+The optimal number of worker nodes is calculated by maximizing concurrency on active computations. Each computation's concurrency is constrained by the number of partitions in its input streams.
 
-The scale metric and the number of worker nodes are also exposed as metric in realtime:
-- nuxeo.streams.scale.metric
-- nuxeo.cluster.worker.count
+**Important:** The system never scales down to zero worker nodes. At least one worker node is required to process asynchronous tasks that are essential for:
+- Reporting metrics
+- Logging audit entries
+- Processing scheduled tasks
 
-This endpoint requires the `metrics.streams.enabled=true`.
+### Metrics
+
+The scale metric and the current number of worker nodes are exposed as real-time Nuxeo metrics:
+- `nuxeo.streams.scale.metric`: The recommended number of worker nodes
+- `nuxeo.cluster.worker.count`: The current number of active worker nodes
+
+### Prerequisites
+
+This endpoint requires `metrics.streams.enabled=true` in `nuxeo.conf`.
 
 ### Query Parameters
 
@@ -357,25 +366,39 @@ None
 
 ### Response
 
-Returns a JSON describing the scaling state:
+Returns a JSON object describing the scaling state of the cluster:
 
-- scale/currentNodes: The current number of worker nodes.
-- scale/bestNodes: The best number of worker nodes to handle the load.
-- scale/metric: A scale metric that indicates the number of node to add (> 0) or to remove (<0), 0 should be the target for optimal processing.
-- nodes[]: The list of nodes information where computations are running
-- computations[]: list of active computations (with a lag), including all metrics per nodes and cumulated at cluster level, you can find an ETA (estimated time of completion in millisecond) with the current number of worker nodes and with the optimal number of nodes.
+**scale**
+- `currentNodes`: The current number of worker nodes in the cluster
+- `bestNodes`: The optimal number of worker nodes to handle the current load
+- `metric`: A scale metric indicating the number of nodes to add (positive value) or remove (negative value). A value of 0 indicates optimal processing capacity.
+
+**nodes[]**
+- Array of node information showing where computations are currently running
+
+**computations[]**
+- Array of active computations (those with lag), including:
+  - Per-node metrics
+  - Cluster-level cumulative metrics
+  - ETA (estimated time to completion in milliseconds) calculated with:
+    - Current number of worker nodes
+    - Optimal number of worker nodes
 
 ### Status Codes
 
-- 200 _OK_ - Success.
-- 403 _FORBIDDEN_ - Stream metrics is not activated.
+- 200 _OK_ - Success. Returns scaling analysis data.
+- 403 _FORBIDDEN_ - Stream metrics are not activated. Set `metrics.streams.enabled=true` in `nuxeo.conf`.
 
 ### Sample
+
+**Request:**
 
 ```curl
 curl -u Administrator:Administrator \
 http://localhost:8080/nuxeo/api/v1/management/stream/scale
 ```
+
+**Response:**
 
 ```json
 {
