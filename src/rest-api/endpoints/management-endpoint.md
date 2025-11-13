@@ -22,7 +22,7 @@ The Management REST API is accessible for any administrator user.
 Furthermore, a "technical" user can be configured to access the Management REST API in `nuxeo.conf`:
 
 ```
-org.nuxeo.rest.management.user=transient/technical_user
+nuxeo.management.api.user=transient/technical_user
 ```
 
 The user does not need to exist in Nuxeo, and **must** start with `transient/` as we are relying on the transient user feature.
@@ -46,7 +46,7 @@ For security reasons, it is recommended to deploy the Management REST API on a d
 For instance, to configure the HTTP port to `9090`, in `nuxeo.conf` add:
 
 ```
-nuxeo.server.http.managementPort=9090
+nuxeo.management.api.http.port=9090
 ```
 
 ## Endpoints
