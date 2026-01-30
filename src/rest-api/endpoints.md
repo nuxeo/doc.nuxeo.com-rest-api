@@ -32,5 +32,5 @@ Here are the endpoints provided by the Nuxeo REST API.
 ## Learn More
 
 - Test the Nuxeo REST API endpoints on your local instance with the [Nuxeo API Playground](http://nuxeo.github.io/api-playground/), see [documentation]({{page space='nxdoc' page='nuxeo-api-playground'}}).
-- Check out the Nuxeo REST API explorer of your instance at https://NUXEO_SERVER/nuxeo/api/v1/doc.
+- Check out the Nuxeo REST API explorer of your instance at https://NUXEO_SERVER/nuxeo/api/v1/doc. The installation of addon [Nuxeo Rest Api Swagger Documentation](https://connect.nuxeo.com/nuxeo/site/marketplace/package/nuxeo-rest-api-documentation) is required since **LTS 2021.60** and **LTS 2023.18**.
 - Learn how to [Contribute a REST API Endpoint]({{page page='how-to-contribute-to-the-rest-api'}}#contributing-a-rest-api-endpoint).
