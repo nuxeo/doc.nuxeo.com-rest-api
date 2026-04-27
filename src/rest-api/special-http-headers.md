@@ -109,9 +109,9 @@ Nuxeo-Transaction-Timeout: 300
 
 ---
 
-## nx_es_sync
+## nx-es-sync
 
-Force ElasticSearch synchronous indexing during a REST call.
+Force synchronous search indexing during a REST call.
 
 **Valid Values**
 
@@ -126,7 +126,7 @@ Force ElasticSearch synchronous indexing during a REST call.
 ```
 POST https://NUXEO_SERVER/nuxeo/api/v1/id/DOC_ID
 Content-Type: application/json
-nx_es_sync: true
+nx-es-sync: true
 ```
 
 ---
