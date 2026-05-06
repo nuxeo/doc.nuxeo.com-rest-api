@@ -27,6 +27,10 @@ nuxeo.management.api.user=transient/technical_user
 
 The user does not need to exist in Nuxeo, and **must** start with `transient/` as we are relying on the transient user feature.
 
+{{#> callout type='info' heading='Since 2025.16'}}
+Every call made to the Management REST API fires a `managementApiAccess` event. By contributing an Audit [route]({{page version='' space='nxdoc' page='audit-router'}}) and the appropriate [extended info]({{page version='' space='nxdoc' page='audit'}}#extendedinfo) mappings on this event, you can persist who called what, when and how to the [Audit]({{page version='' space='nxdoc' page='audit'}}) service to enable full traceability of the Management REST API. See the [worked example]({{page version='' space='nxdoc' page='audit-router'}}#worked-example-routing-a-business-event-to-a-secondary-backend) on the Audit Router page.
+{{/callout}}
+
 Once you have created the user, configure a JWT secret in `nuxeo.conf`:
 
 ```
@@ -55,6 +59,7 @@ Here are the endpoints provided by the Management REST API.
 
 | Name                                                       | Endpoint             | Description                    |
 |------------------------------------------------------------|----------------------|--------------------------------|
+| [Audit]({{page page='audit-endpoint'}})                    | **/audit**           | Audit Router introspection and Blue/Green Audit migration. |
 | [Binaries]({{page page='binaries-endpoint'}})              | **/binaries**        | Binaries management.           |
 | [Blobs]({{page page='blobs-endpoint'}})                    | **/blobs**           | Blobs management.              |
 | [Bulk]({{page page='bulk-endpoint'}})                      | **/bulk**            | Bulk actions management.       |
