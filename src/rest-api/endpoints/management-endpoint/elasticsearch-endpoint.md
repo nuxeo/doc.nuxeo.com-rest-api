@@ -207,7 +207,7 @@ To check the number of visible documents in Elastic and in the repository:
 
 ```curl
 curl -X GET -u Administrator:Administrator \
-   --data-urlencode "nxql=SELECT * FROM Document WHERE ecm:isProxy = 0 AND ecm:isVersion = 0 AND ecm:isTrashed = 0" \
+   -G --data-urlencode "nxql=SELECT * FROM Document WHERE ecm:isProxy = 0 AND ecm:isVersion = 0 AND ecm:isTrashed = 0" \
    --data-urlencode "pageSize=5" \
    http://localhost:8080/nuxeo/api/v1/management/elasticsearch/checkSearch
 ```
