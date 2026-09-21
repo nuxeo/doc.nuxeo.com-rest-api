@@ -23,16 +23,21 @@ The Audit endpoint exposes operations to operate a Blue/Green Audit migration (c
 POST /management/audit/copy
 ```
 
-Triggers a [bulk action]({{page page='bulk-endpoint'}}) (`copyAudit`) that scrolls the source Audit Backend and writes every `LogEntry` to the target Audit Backend. This is the primary operation used to perform a Blue/Green Audit migration, for instance when upgrading from an OpenSearch 1.x to an OpenSearch 2.x cluster, or from MongoDB to OpenSearch.
+Triggers a [bulk action]({{page page='bulk-endpoint'}}) (`copyAudit`) that scrolls the source Audit Backend and writes every matching `LogEntry` to the target Audit Backend. This is the primary operation used to perform a Blue/Green Audit migration, for instance when upgrading from an OpenSearch 1.x to an OpenSearch 2.x cluster, or from MongoDB to OpenSearch. It can also be used to copy a subset of the log entries only, by providing an NXQL `query` instead of a `from` backend name.
 
 The bulk action runs as the `system` user and is exclusive: a second `/copy` call between the same backends will be rejected as long as the previous one is not finished.
 
 ### Form Parameters
 
-| Parameter Name | Type       | Description                                          | Notes    |
-|----------------|------------|------------------------------------------------------|----------|
-| **from**       | **string** | The name of the source Audit Backend to copy from.   | Required |
-| **to**         | **string** | The name of the target Audit Backend to copy to.     | Required |
+| Parameter Name | Type       | Description                                                                               | Notes                               |
+| -------------- | ---------- | ----------------------------------------------------------------------------------------- | ----------------------------------- |
+| **from**       | **string** | The name of the source Audit Backend to copy from.                                        | Required unless `query` is provided |
+| **query**      | **string** | An NXQL query selecting the `LogEntry`s to copy, e.g. `SELECT * FROM LogEntry WHERE ...`. | Required unless `from` is provided  |
+| **to**         | **string** | The name of the target Audit Backend to copy to.                                          | Required                            |
+
+{{#> callout type='note'}}
+`from` is a shortcut for `query=SELECT * FROM <from>`. Providing both `from` and `query`, or neither, is rejected.
+{{/callout}}
 
 ### Response
 
@@ -43,7 +48,7 @@ The copy progress can then be monitored using the [Bulk Endpoint]({{page page='b
 ### Status Codes
 
 - 200 _OK_ - Success.
-- 400 _Bad Request_ - `from` or `to` is missing or blank.
+- 400 _Bad Request_ - `to` is missing or blank, `from` and `query` are both provided or both missing, or `query` is not a valid NXQL query.
 - 409 _Conflict_ - A copy is already running.
 
 ### Sample
@@ -53,6 +58,15 @@ To copy all log entries from the `default` Audit Backend to the `other` Audit Ba
 ```curl
 curl -X POST -u Administrator:Administrator \
 --data-urlencode "from=default" \
+--data-urlencode "to=other" \
+http://localhost:8080/nuxeo/api/v1/management/audit/copy
+```
+
+To copy only the `documentCreated` log entries from the `default` Audit Backend to the `other` Audit Backend:
+
+```curl
+curl -X POST -u Administrator:Administrator \
+--data-urlencode "query=SELECT * FROM LogEntry WHERE eventId = 'documentCreated'" \
 --data-urlencode "to=other" \
 http://localhost:8080/nuxeo/api/v1/management/audit/copy
 ```
@@ -88,11 +102,11 @@ Runs the same NXQL query against several Audit Backends in parallel and reports 
 
 ### Query Parameters
 
-| Parameter Name | Type       | Description                                                       | Notes                                                                |
-|----------------|------------|-------------------------------------------------------------------|----------------------------------------------------------------------|
-| **nxql**       | **string** | The NXQL query to execute against each Audit Backend.             | Optional, defaults to `SELECT * FROM LogEntry`                       |
-| **pageSize**   | **number** | The number of log entries to return per backend execution.        | Optional                                                             |
-| **backend**    | **string** | The name of an Audit Backend to query. Repeat to query several.   | Required, at least one value must be provided.                       |
+| Parameter Name | Type       | Description                                                     | Notes                                          |
+| -------------- | ---------- | --------------------------------------------------------------- | ---------------------------------------------- |
+| **nxql**       | **string** | The NXQL query to execute against each Audit Backend.           | Optional, defaults to `SELECT * FROM LogEntry` |
+| **pageSize**   | **number** | The number of log entries to return per backend execution.      | Optional                                       |
+| **backend**    | **string** | The name of an Audit Backend to query. Repeat to query several. | Required, at least one value must be provided. |
 
 ### Response
 
@@ -121,33 +135,19 @@ curl -X GET -u Administrator:Administrator \
 ```json
 {
   "pageProvider": "audit_check_nxql",
-  "orders": [
-    "logDate DESC"
-  ],
+  "orders": ["logDate DESC"],
   "executions": {
     "default": {
       "duration": "324ms",
       "resultsCount": 1234,
       "resultsCountLimit": 0,
-      "results": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5"
-      ]
+      "results": ["1", "2", "3", "4", "5"]
     },
     "other": {
       "duration": "22ms",
       "resultsCount": 1234,
       "resultsCountLimit": 10000,
-      "results": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5"
-      ]
+      "results": ["1", "2", "3", "4", "5"]
     }
   }
 }
