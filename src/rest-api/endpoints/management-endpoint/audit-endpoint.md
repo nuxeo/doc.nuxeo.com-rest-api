@@ -93,6 +93,91 @@ http://localhost:8080/nuxeo/api/v1/management/audit/copy
 }
 ```
 
+## Purge Log Entries Through Named Routes
+
+```
+POST /management/audit/purge
+```
+
+{{#> callout type='warning' heading='Only available since 2025.26'}}
+This endpoint has been introduced in Nuxeo 2025.26.
+{{/callout}}
+
+Triggers a [bulk action]({{page page='bulk-endpoint'}}) (`routeAudit`) that scrolls `LogEntry`s matching an NXQL `query` and dispatches them to one or more named [Audit Router]({{page version='' space='nxdoc' page='audit-router'}}) routes, including routes that are not live (`live="false"`), such as purge-only or archive routes. This is typically used to backfill a newly introduced Audit Backend with historical entries — which a live route alone can never deliver, since it only dispatches events going forward — or to archive a subset of existing entries out of the current backend.
+
+The bulk action runs as the `system` user and is exclusive: a second `/purge` call will be rejected as long as the previous one is not finished.
+
+### Form Parameters
+
+| Parameter Name | Type       | Description                                                                        | Notes                                          |
+| -------------- | ---------- | ---------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **query**      | **string** | The NXQL query selecting the `LogEntry`s to route.                                 | Required                                       |
+| **routes**     | **string** | The name of a route to dispatch matching entries to. Repeat to use several routes. | Required, at least one value must be provided. |
+
+### Response
+
+If successful, returns a [bulk status entity]({{page page='bulk-status-entity-type'}}) representing the bulk action status of the `routeAudit` action.
+
+Once completed, the `result` object of the bulk status contains a `matched.<routeName>` counter for each requested route, giving the number of entries dispatched to it, and a `skip.<backendName>` counter for each target Audit Backend that already contained a given entry (idempotent copy).
+
+The progress can then be monitored using the [Bulk Endpoint]({{page page='bulk-endpoint'}}).
+
+### Status Codes
+
+- 200 _OK_ - Success.
+- 400 _Bad Request_ - `query` is missing or blank, `routes` is empty, a route name does not exist, or a route targets the same backend as the `query`'s source backend (which would route entries back to themselves).
+- 409 _Conflict_ - A purge is already running.
+
+{{#> callout type='note'}}
+Carefully choose the time window of your `query` when a _live_ route is
+among `routes`. Say a `future-default-route` went live at `t0` (the moment
+you contributed it): entries older than `t0` were never seen by it and are
+copied normally, while entries at or after `t0` have already been
+dual-written to its target backend — the purge scroll still visits them, but
+each write is rejected as a duplicate (`ConcurrentUpdateException`, handled
+transparently) and only counted in `skip.<backendName>`.
+
+Scoping `query` a bit past `t0` is harmless — the extra entries are simply
+skipped — but scoping it far beyond `t0` (e.g. the whole backend's history)
+wastes time re-scrolling and re-attempting entries that were always going to
+be skipped, for no benefit. See
+[Purge an Audit Backend]({{page version='' space='nxdoc' page='purge-audit-backend'}})
+for a worked example.
+{{/callout}}
+
+### Sample
+
+To route all log entries from the `default` Audit Backend through the `archive-route` and `future-default-route` routes, each route only dispatching entries matching its own configuration (for instance `archive-route` may only forward `documentDeleted` events, while `future-default-route` is a catch-all):
+
+```curl
+curl -X POST -u Administrator:Administrator \
+--data-urlencode "query=SELECT * FROM LogEntry" \
+--data-urlencode "routes=archive-route" \
+--data-urlencode "routes=future-default-route" \
+http://localhost:8080/nuxeo/api/v1/management/audit/purge
+```
+
+```json
+{
+  "entity-type": "bulkStatus",
+  "commandId": "0e1e6800-631a-4e04-a47c-241ea7b3596a",
+  "state": "COMPLETED",
+  "processed": 1234,
+  "error": false,
+  "errorCount": 0,
+  "total": 1234,
+  "action": "routeAudit",
+  "username": "system",
+  "result": {
+    "matched.archive-route": 42,
+    "matched.future-default-route": 1234,
+    "skip.future-default": 12
+  }
+}
+```
+
+See [Purge an Audit Backend]({{page version='' space='nxdoc' page='purge-audit-backend'}}) for the full worked example, including the corresponding `routes` contribution.
+
 ## Check the Result of a Copy Across Audit Backends
 
 ```
@@ -122,14 +207,14 @@ Note that only log entry identifiers are returned, this is on purpose because th
 
 ### Sample
 
-To check that the `default` and `other` Audit Backends contain the same log entries after a copy:
+To check that the `default` and `future-default` Audit Backends contain the same log entries after a copy:
 
 ```curl
 curl -X GET -u Administrator:Administrator \
 --data-urlencode "nxql=SELECT * FROM LogEntry" \
 --data-urlencode "pageSize=5" \
 --data-urlencode "backend=default" \
---data-urlencode "backend=other" \
+--data-urlencode "backend=future-default" \
 -G http://localhost:8080/nuxeo/api/v1/management/audit/checkSearch
 ```
 
@@ -144,7 +229,7 @@ curl -X GET -u Administrator:Administrator \
       "resultsCountLimit": 0,
       "results": ["1", "2", "3", "4", "5"]
     },
-    "other": {
+    "future-default": {
       "duration": "22ms",
       "resultsCount": 1234,
       "resultsCountLimit": 10000,
